@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1741780000589" clover="3.2.0">
+  <project timestamp="1741780000589" name="All files">
+    <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="4" elements="11" coveredelements="10" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
+    <file name="index.ts" path="C:\Users\TEMP\Desktop\aula2\index.ts">
+      <metrics statements="6" coveredstatements="6" conditionals="1" coveredconditionals="0" methods="4" coveredmethods="4"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="10" count="2" type="cond" truecount="0" falsecount="1"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="15" count="3" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
