@@ -1,3 +1,3 @@
 export default function subtrai(a: number, b: number): number{
-    return 0
+    return a-b
 }

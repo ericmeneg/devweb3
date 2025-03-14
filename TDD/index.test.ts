@@ -1,10 +1,9 @@
 import subtrai from "."
 import { expect, test } from "@jest/globals"
 
-test("Subtrai 2 - 1 é igual a 1", () => {
-    expect(subtrai(2,1)).toBe(1)
-})
+const a = Math.floor(Math.random()*100)
+const b = Math.floor(Math.random()*100)
 
-test("Subtrai 5 - 3 é igual a 2", () => {
-    expect(subtrai(5,3)).toBe(2)
+test(`Subtração de ${a} e ${b} é igual a ${a-b}`, () => {
+    expect(subtrai(a,b)).toBe(a-b)
 })
