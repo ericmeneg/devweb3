@@ -1,7 +1,7 @@
 import express from 'express'
 const app = express()
 
-const PORT = 3000
+const PORT = 3001
 app.get('/tabuada/:numero', (req, res) => {
     let numeroEscolhido = req.params.numero
     let jsonString = `{
@@ -18,7 +18,7 @@ app.get('/tabuada/:numero', (req, res) => {
     }`
     const jsonReturn = JSON.parse(jsonString)
     res.send(
-        jsonReturn
+        numeroEscolhido
     )
 })
 
