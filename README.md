@@ -7,3 +7,4 @@ Habilidades e ferramentas trabalhadas:
 <li>Typescript</li>
 <li>Testes unitários</li>
 <li>SQL</li>
+<li>NestJS</li>
