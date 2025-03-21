@@ -3,7 +3,7 @@ const app = express()
 
 const PORT = 3001
 app.get('/tabuada/:numero', (req, res) => {
-    let numeroEscolhido = req.params.numero
+    let numeroEscolhido = parseInt(req.params.numero)
     let jsonString = `{
         "1": "${numeroEscolhido} x 1 = ${numeroEscolhido * 1}",
         "2": "${numeroEscolhido} x 2 = ${numeroEscolhido * 2}",
@@ -14,11 +14,10 @@ app.get('/tabuada/:numero', (req, res) => {
         "7": "${numeroEscolhido} x 7 = ${numeroEscolhido * 7}",
         "8": "${numeroEscolhido} x 8 = ${numeroEscolhido * 8}",
         "9": "${numeroEscolhido} x 9 = ${numeroEscolhido * 9}",
-        "10": "${numeroEscolhido} x 10 = ${numeroEscolhido * 10}",
+        "10": "${numeroEscolhido} x 10 = ${numeroEscolhido * 10}"
     }`
-    const jsonReturn = JSON.parse(jsonString)
     res.send(
-        numeroEscolhido
+        res.json(JSON.parse(jsonString))
     )
 })
 
