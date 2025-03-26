@@ -22,20 +22,25 @@ export class UsersService {
   }
 
   async findOne(id: number) {
-    const user = await this.usersRepository.findOneBy({ id });
+    const user = await this.usersRepository.find({
+      where: [{id}],
+      relations: {
+        orders: true
+      }
+    });
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
     }
     return user;
   }
 
-  //o nest automaticamente faz await no statement return, porém para qualquer outra função assíncrona é necessário escrever o await e async por conta do tempo de resposta do banco
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    const user = await this.findOne(id);
-    // a função merge (do typeorm) pega tudo que existe nos dois parâmetros, e substitui no primeiro tudo o que também existe no segundo
-    this.usersRepository.merge(user, updateUserDto);
-    return this.usersRepository.save(user);
-  }
+  // //o nest automaticamente faz await no statement return, porém para qualquer outra função assíncrona é necessário escrever o await e async por conta do tempo de resposta do banco
+  // async update(id: number, updateUserDto: UpdateUserDto) {
+  //   const user = await this.findOne(id);
+  //   // a função merge (do typeorm) pega tudo que existe nos dois parâmetros, e substitui no primeiro tudo o que também existe no segundo
+  //   this.usersRepository.merge(user, updateUserDto);
+  //   return this.usersRepository.save(user);
+  // }
 
   async remove(id: number) {
     const user = await this.findOne(id);
