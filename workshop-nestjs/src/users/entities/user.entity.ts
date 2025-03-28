@@ -13,5 +13,5 @@ export class User {
   email: string;
 
   @OneToMany(() => Order, (order) => order.user)
-  orders: Order[]
+  orders: Order[];
 }

@@ -13,5 +13,5 @@ export class Product {
   price: number;
 
   @OneToMany(() => OrderItem, (item) => item.product)
-  items: OrderItem[]
+  items: OrderItem[];
 }
