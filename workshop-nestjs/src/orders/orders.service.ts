@@ -16,7 +16,7 @@ export class OrdersService {
     private orderItemRepository: Repository<OrderItem>,
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
-  ) { }
+  ) {}
 
   async create(createOrderDto: CreateOrderDto) {
     const produtos = await this.productRepository.find({
@@ -65,15 +65,15 @@ export class OrdersService {
 
   findAll() {
     return this.orderRepository.find({
-      relations: ['items', 'items.product', 'user']
-    })
+      relations: ['items', 'items.product', 'user'],
+    });
   }
 
   findOne(id: number) {
     return this.orderRepository.find({
       where: { id },
-      relations: ['items', 'items.product', 'user']
-    })
+      relations: ['items', 'items.product', 'user'],
+    });
   }
 
   update(id: number, updateOrderDto: UpdateOrderDto) {

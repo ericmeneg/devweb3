@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -12,8 +13,11 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    const user = this.usersRepository.create(createUserDto);
+  async create(createUserDto: CreateUserDto) {
+    //salt: valor único utilizado no hash que previne o uso de "dicionários" de senhas comuns usando algoritmos de hash populares, pode ser baseado em informações do usuário específico (como ID, data e hora da criação do usuário, etc...) ou um único salt para o sistema inteiro dentro do arquivo .env
+    const salt = createUserDto.email + '-'; // nesse caso o salt é o email da pessoa, seguido de -
+    const password = await bcrypt.hash(salt + createUserDto.password, 10); // adicionamos o salt aqui
+    const user = this.usersRepository.create({ ...createUserDto, password });
     return this.usersRepository.save(user);
   }
 
@@ -23,6 +27,14 @@ export class UsersService {
 
   async findOne(id: number) {
     const user = await this.usersRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+    return user;
+  }
+
+  async findOneByEmail(email: string) {
+    const user = await this.usersRepository.findOneBy({ email }); // aqui {email} é igual a {email: email}
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
     }
