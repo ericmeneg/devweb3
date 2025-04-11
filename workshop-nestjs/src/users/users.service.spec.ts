@@ -5,6 +5,8 @@ import { User } from './entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { mock } from 'node:test';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -14,7 +16,9 @@ describe('UsersService', () => {
     find: jest.fn(),
     findOneBy: jest.fn(),
     create: jest.fn(),
-    save: jest.fn()
+    save: jest.fn(),
+    merge: jest.fn(),
+    remove: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -84,8 +88,34 @@ describe('UsersService', () => {
       mockRepository.create.mockResolvedValue(user);
       mockRepository.save.mockResolvedValue(user);
 
-      const result  = await service.create(createUserDto);
-      expect(result).toEqual(user)
+      const result = await service.create(createUserDto);
+      expect(result).toEqual(user);
+    });
+  });
+
+  describe('update', () => {
+    it('deve atualizar o usuário', async () => {
+      const updateUserDto: UpdateUserDto = { name: 'Nome Alterado' };
+      const user = { id: 1, name: 'Nome', email: 'email@email.com' };
+      const updatedUser = { ...user, ...updateUserDto };
+
+      mockRepository.findOneBy.mockResolvedValue(user);
+      mockRepository.merge.mockResolvedValue(updatedUser);
+      mockRepository.save.mockResolvedValue(updatedUser);
+
+      const result = await service.update(1, updateUserDto);
+      expect(result).toEqual(updatedUser);
+    });
+  });
+
+  describe('remove', () => {
+    it('deve remover um usuário', async () => {
+      const user = { id: 1, name: 'Teste', email: 'email@email.com' };
+      mockRepository.findOneBy.mockResolvedValue(user);
+      mockRepository.remove.mockResolvedValue(user);
+
+      const result = await service.remove(1);
+      expect(result).toEqual(user);
     });
   });
 });
