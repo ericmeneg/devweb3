@@ -1,14 +1,32 @@
-import Link from "next/link";
+'use client'
+import { IProduct } from "@/interfaces/product.interface";
+import { useEffect, useState } from "react";
+import { getProducts } from "./api";
+import ProductCard from "@/components/product/ProductCard";
 
 export default function Products(){
-    return (
-        <>
-        <h1>Lista de produtos</h1>
-        <ul>
-            <li>
-                
-            </li>
-        </ul>
-        </>
+    const [products, setProducts] = useState<IProduct[]>([])
+
+    async function findProducts(){
+        const products = await getProducts()
+        setProducts(products)
+    }
+
+    useEffect( () => {
+        findProducts()
+    }, [])
+
+   return (
+    <div className="h-screen w-full flex flex-col justify-center items-center">
+        <h1 className="text-4xl text-gray-600 mb-5">Produtos</h1>
+        <div className="flex justify-around flex-wrap">
+        {
+            products.map((product) => (
+                <ProductCard key={product.id}
+                product= {product} />
+            ))
+        }
+        </div>
+    </div>
     )
 }
