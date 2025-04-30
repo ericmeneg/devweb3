@@ -17,8 +17,9 @@ export default function Products(){
     }, [])
 
    return (
-    <div className="h-screen w-full flex flex-col justify-center items-center">
+    <div className="mt-8 w-full flex flex-col justify-center items-center">
         <h1 className="text-4xl text-gray-600 mb-5">Produtos</h1>
+        
         <div className="flex justify-around flex-wrap">
         {
             products.map((product) => (
