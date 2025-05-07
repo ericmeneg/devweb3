@@ -20,6 +20,7 @@ export default function Users() {
     const { register, handleSubmit } = useForm<IUserRequest>()
     async function onSubmit(data: IUserRequest){
       const user = await cadastrarUser(data)
+      console.log(user)
       carregarDados()
     }
 

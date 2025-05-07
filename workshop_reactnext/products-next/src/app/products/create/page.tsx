@@ -1,5 +1,5 @@
 'use client'
-import { IProduct, IProductRequest } from '@/interfaces/product.interface'
+import { IProductRequest } from '@/interfaces/product.interface'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { createProduct } from '../api'
