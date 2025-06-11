@@ -1,0 +1,12 @@
+{
+  "name": "devweb3",
+  "version": "1.0.0",
+  "description": "Repositório para os projetos realizados em aula para a disciplina de desenvolvimento web III, ministrada pelo professor [Felipe](https://github.com/felipez3r0), como parte do curso de desenvolvimento de software multiplataforma, na FATEC de Indaiatuba.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
